@@ -1,23 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { Link, Route, Routes } from "react-router-dom";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Home from "./components/Home";
+import Navbar from "./components/Navbar";
+import OrderConfirmed from "./components/OrderConfirmed";
+import PageNotFound from "./components/PageNotFound";
+// import Products from "./components/Products";
+
+
+import Featured from "./components/Featured";
+import NewProducts from "./components/NewProducts";
+import User from "./components/Users/User";
+import UserDetails from "./components/Users/UserDetails";
+import Admin from "./components/Admin";
+import React from "react";
+import Profile from "./components/Profile";
+import Login from "./components/Authentication/Login";
+import { AuthProvider } from "./components/Authentication/Auth";
+import Logout from "./components/Authentication/Logout";
+import RequireAuth from "./components/Authentication/RequireAuth";
+import CounterOne from "./components/HOComp/CounterOne";
+
+const LazyProducts = React.lazy(() => import("./components/Products"));
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AuthProvider>
+        <Navbar />
+        <Routes>
+          <Route path="/about" element={<About />}></Route>
+          <Route path="/contact" element={<Contact />}></Route>
+          <Route path="/home" element={<Home />}></Route>
+          <Route path="/order-placed" element={<OrderConfirmed />}></Route>
+          <Route path="products" element={<React.Suspense fallback="Loading..."><RequireAuth><LazyProducts /></RequireAuth></React.Suspense>}>
+            <Route index element={<Featured />}></Route>
+            <Route path="featured" element={<Featured />}></Route>
+            <Route path="new" element={<NewProducts />}></Route>
+          </Route>
+          <Route path="users" element={<User />}>
+            <Route path="users/:id" element={<UserDetails />}></Route>
+            <Route path="users/admin" element={<Admin />}></Route>
+          </Route>
+          <Route path="profile" element={<RequireAuth><Profile /></RequireAuth>}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/logout" element={<Logout />}></Route>
+          <Route path="/HOC" element={<CounterOne/>}></Route>
+          <Route path="/*" element={<PageNotFound />}></Route>
+        </Routes>
+      </AuthProvider>
     </div>
   );
 }
