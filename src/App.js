@@ -22,6 +22,7 @@ import { AuthProvider } from "./components/Authentication/Auth";
 import Logout from "./components/Authentication/Logout";
 import RequireAuth from "./components/Authentication/RequireAuth";
 import CounterOne from "./components/HOComp/CounterOne";
+import Todolist from "./components/todo-app/Todolist";
 
 const LazyProducts = React.lazy(() => import("./components/Products"));
 
@@ -48,6 +49,7 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/logout" element={<Logout />}></Route>
           <Route path="/HOC" element={<CounterOne/>}></Route>
+          <Route path="/todoapp" element={<Todolist/>}></Route>
           <Route path="/*" element={<PageNotFound />}></Route>
         </Routes>
       </AuthProvider>

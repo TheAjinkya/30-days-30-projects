@@ -19,6 +19,7 @@ function Navbar() {
             <NavLink className="m-2" style={styleLinkObject} to="/users">Users</NavLink>
             <NavLink className="m-2" style={styleLinkObject} to="/profile">Profile</NavLink>
             <NavLink className="m-2" style={styleLinkObject} to="/HOC">HOC</NavLink>
+            <NavLink className="m-2" style={styleLinkObject} to="/todoapp">ToDoApp</NavLink>
 
             {!auth.user && <NavLink className="m-2" style={styleLinkObject} to="/login">Login</NavLink>}
             {auth.user && <NavLink className="m-2" style={styleLinkObject} to="/logout">Logout</NavLink>}
