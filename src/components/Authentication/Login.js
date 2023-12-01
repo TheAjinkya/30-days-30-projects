@@ -19,7 +19,7 @@ function Login() {
 
   return (
     <div>
-      <label>Username: <br/>
+      <label>Please login to see the Products Page<br/>
         <input placeholder='guest' className='border border-b-gray-900' type='text' onChange={(e) => setUser(e.target.value)} />
       </label>
       <button className='bg-green-400 text-white p-2 m-2' onClick={() => signin()}>Login</button>
