@@ -26,6 +26,7 @@ import Todolist from "./components/todo-app/Todolist";
 import MainCounter from "./components/ReduxCounter/MainCounter";
 import { Provider } from "react-redux";
 import { store } from "./components/ReduxCounter/redux/store";
+import MainPhotoPage from "./components/PhotoApp/MainPhotoPage";
 
 const LazyProducts = React.lazy(() => import("./components/Products"));
 
@@ -35,29 +36,36 @@ function App() {
 
       <AuthProvider>
         <Provider store={store}>
-          <Navbar />
-          <Routes>
-            <Route path="/about" element={<About />}></Route>
-            <Route path="/contact" element={<Contact />}></Route>
-            <Route path="/home" element={<Home />}></Route>
-            <Route path="/order-placed" element={<OrderConfirmed />}></Route>
-            <Route path="products" element={<React.Suspense fallback="Loading..."><RequireAuth><LazyProducts /></RequireAuth></React.Suspense>}>
-              <Route index element={<Featured />}></Route>
-              <Route path="featured" element={<Featured />}></Route>
-              <Route path="new" element={<NewProducts />}></Route>
-            </Route>
-            <Route path="users" element={<User />}>
-              <Route path="users/:id" element={<UserDetails />}></Route>
-              <Route path="users/admin" element={<Admin />}></Route>
-            </Route>
-            <Route path="profile" element={<RequireAuth><Profile /></RequireAuth>}></Route>
-            <Route path="/login" element={<Login />}></Route>
-            <Route path="/logout" element={<Logout />}></Route>
-            <Route path="/HOC" element={<CounterOne />}></Route>
-            <Route path="/todoapp" element={<Todolist />}></Route>
-            <Route path="/counter" element={<MainCounter />}></Route>
-            <Route path="/*" element={<PageNotFound />}></Route>
-          </Routes>
+          <div className="flex flex-col">
+            <div className="">
+              <Navbar />
+            </div>
+            <div className="">
+            <Routes>
+              <Route path="/about" element={<About />}></Route>
+              <Route path="/contact" element={<Contact />}></Route>
+              <Route path="/home" element={<Home />}></Route>
+              <Route path="/order-placed" element={<OrderConfirmed />}></Route>
+              <Route path="products" element={<React.Suspense fallback="Loading..."><RequireAuth><LazyProducts /></RequireAuth></React.Suspense>}>
+                <Route index element={<Featured />}></Route>
+                <Route path="featured" element={<Featured />}></Route>
+                <Route path="new" element={<NewProducts />}></Route>
+              </Route>
+              <Route path="users" element={<User />}>
+                <Route path="users/:id" element={<UserDetails />}></Route>
+                <Route path="users/admin" element={<Admin />}></Route>
+              </Route>
+              <Route path="profile" element={<RequireAuth><Profile /></RequireAuth>}></Route>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/logout" element={<Logout />}></Route>
+              <Route path="/HOC" element={<CounterOne />}></Route>
+              <Route path="/todoapp" element={<Todolist />}></Route>
+              <Route path="/counter" element={<MainCounter />}></Route>
+              <Route path="/unsplash" element={<MainPhotoPage />}></Route>
+              <Route path="/*" element={<PageNotFound />}></Route>
+            </Routes>
+            </div>
+          </div>
         </Provider>
       </AuthProvider>
     </div>
