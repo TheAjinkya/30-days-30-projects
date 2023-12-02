@@ -64,7 +64,7 @@ function App() {
                   <Route path="redux-counter" element={<ReduxBasicCounter />}></Route>
                 </Route>
                 <Route path="/unsplash" element={<MainPhotoPage />}></Route>
-                <Route path="/*" element={<PageNotFound />}></Route>
+                <Route path="/*" element={<MainPhotoPage />}></Route>
               </Routes>
             </div>
           </div>

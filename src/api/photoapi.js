@@ -11,7 +11,6 @@ const searchImages = async (term) => {
             query: term
         }
     })
-    console.log("Response--", response)
     return response;
 }
 
