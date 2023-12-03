@@ -11,6 +11,7 @@ function MainPhotoPage() {
     const [searchTerm, setSearchTerm] = useState("sunrise");
 
     const getData = async (searchTerm) => {
+        setImages([])
         const result = await searchImages(searchTerm);
         const { data } = result;
         const records = data.map(element => element.urls)

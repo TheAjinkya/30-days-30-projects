@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialValue = {
     value: 0
@@ -19,6 +19,27 @@ const countSlice = createSlice({
         }
     }
 })
-export const { increment, decrement, reset } = countSlice.actions;
 
-export default countSlice.reducer;
+const initialState = {
+    authenticated: false
+}
+
+const authSlice = createSlice({
+    name: "authenticate",
+    initialState,
+    reducers: {
+        login: (state) => {
+            state.authenticated = !state.authenticated;
+        },
+        logout: (state) => {
+            state.authenticated = false;
+        }
+    }
+})
+
+export const authReducer = authSlice.reducer;
+export const countReducer = countSlice.reducer;
+
+export const { login, logout } = authSlice.actions;
+
+export const { increment, decrement, reset } = countSlice.actions;
