@@ -8,8 +8,6 @@ import Navbar from "./components/Navbar";
 import OrderConfirmed from "./components/OrderConfirmed";
 import PageNotFound from "./components/PageNotFound";
 // import Products from "./components/Products";
-
-
 import Featured from "./components/Featured";
 import NewProducts from "./components/NewProducts";
 import User from "./components/Users/User";
@@ -21,13 +19,14 @@ import Login from "./components/Authentication/Login";
 import { AuthProvider } from "./components/Authentication/Auth";
 import Logout from "./components/Authentication/Logout";
 import RequireAuth from "./components/Authentication/RequireAuth";
-import CounterOne from "./components/HOComp/CounterOne";
 import Todolist from "./components/todo-app/Todolist";
 import MainCounter from "./components/ReduxCounter/MainCounter";
 import ReduxBasicCounter from "./components/ReduxBasicCounter/MainCounter";
 import { Provider } from "react-redux";
 import { store } from "./components/ReduxCounter/redux/store";
 import MainPhotoPage from "./components/PhotoApp/MainPhotoPage";
+import CounterOne from "./components/CounterApp/CounterOne";
+import MusicPlayer from "./components/MusicPlayerApp/MusicPlayer";
 
 const LazyProducts = React.lazy(() => import("./components/Products"));
 
@@ -64,6 +63,7 @@ function App() {
                   <Route path="redux-counter" element={<ReduxBasicCounter />}></Route>
                 </Route>
                 <Route path="/unsplash" element={<MainPhotoPage />}></Route>
+                <Route path="/audioplayer" element={<MusicPlayer />}></Route>
                 <Route path="/*" element={<MainPhotoPage />}></Route>
               </Routes>
             </div>
@@ -75,3 +75,8 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
