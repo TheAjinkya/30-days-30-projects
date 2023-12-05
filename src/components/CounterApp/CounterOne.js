@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
 
 const CounterOne = () => {
-    const [count, setCount] = useState(110);
-    const [greeting, setGreeting] = useState("Hello World");
-    const [isloading, setLoading] = useState(true);
-    const [name, setName] = useState({ firstName: "ABC", lastName: "Xyz" });
-    const [contacts, setContacts] = useState([10, 30, 40, 50, 60]);
 
+    const [count, setCount] = useState(100);
+    const [greeting, setGreeting] = useState("Hello World");
+    const [isLoading, setIsLoading] = useState(false);
+
+    const [contacts, setContacts] = useState([10, 30, 40, 20, 50]);
+
+    const [fullName, setFullName] = useState({firstName: "ABC", lastName: "Xyz"});
+    
+    // Primitive Data Types
     // Number
     // String
     // Boolean
@@ -18,15 +22,16 @@ const CounterOne = () => {
     // Objects
 
     return (<div>
-        Hello World COunter One count: {count} <br />
-        Greeting of the Day: {greeting} <br />
-        Is the Page still Loading: {isloading?<>True</>:<>False</> } <br />
-        The Name is : {name.firstName} {name.lastName} <br />
-
-        The Contact list is :  <br /> {contacts.map(element =>(<>{element} </>))}
-
-
-
+       Counter One {count} <br/>
+       Greeting is {greeting} <br/> 
+       <button className='m-2 p-2 border border-solid bg-blue-700 text-white'
+        onClick={()=>setCount(prevCount=>prevCount+ 1)}>Increment</button> 
+        <br/>
+        {isLoading? <>True</>: <>False</>} <br/>
+        {contacts.map(element=>{
+           return (<>{element} <br/></> )
+            })} <br/>
+            Full Name: {fullName.firstName} {fullName.lastName}
     </div>)
 }
 
