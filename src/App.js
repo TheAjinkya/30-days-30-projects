@@ -29,6 +29,7 @@ import CounterOne from "./components/CounterApp/CounterOne";
 import MusicPlayer from "./components/MusicPlayerApp/MusicPlayer";
 import CalenderApp from "./components/CalenderApp/CalenderApp";
 import ImageSliderComp from "./components/ImageSlider/ImageSliderComp";
+import ReduxCart from "./components/ReduxCart/ReduxCart";
 
 const LazyProducts = React.lazy(() => import("./components/Products"));
 
@@ -59,7 +60,7 @@ function App() {
                 <Route path="profile" element={<RequireAuth><Profile /></RequireAuth>}></Route>
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/logout" element={<Logout />}></Route>
-              <Route path="/counterone" element={<CounterOne />}></Route>
+              <Route path="/reduxcart" element={<ReduxCart />}></Route>
                 <Route path="/todoapp" element={<Todolist />}></Route>
                 <Route path="counter" element={<MainCounter />}>
                   <Route path="redux-counter" element={<ReduxBasicCounter />}></Route>

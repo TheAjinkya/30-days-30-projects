@@ -37,6 +37,31 @@ const authSlice = createSlice({
     }
 })
 
+const initialCart = { value: 0 };
+
+const cartSlice = createSlice({
+    name: "cart",
+    initialState: initialCart,
+    reducers: {
+        incrementCart: (state, action) => {
+            state.value = state.value + action.payload
+        },
+        decrementCart: (state, action) => {
+            state.value = state.value - action.payload
+        },
+        removeAll: (state, action) => {
+            state.value = 0
+        },
+        toggleCart: (state, action) => {
+            state.value = !state.value
+        }
+    }
+
+})
+
+export const cartReducer = cartSlice.reducer;
+export const { incrementCart, decrementCart, toggleCart } = cartSlice.actions;
+
 export const authReducer = authSlice.reducer;
 export const countReducer = countSlice.reducer;
 
