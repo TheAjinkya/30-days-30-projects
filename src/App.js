@@ -30,6 +30,8 @@ import MusicPlayer from "./components/MusicPlayerApp/MusicPlayer";
 import CalenderApp from "./components/CalenderApp/CalenderApp";
 import ImageSliderComp from "./components/ImageSlider/ImageSliderComp";
 import ReduxCart from "./components/ReduxCart/ReduxCart";
+import GitHubUsers from "./components/GithubProfiles/GitHubUsers";
+
 
 const LazyProducts = React.lazy(() => import("./components/Products"));
 
@@ -69,6 +71,7 @@ function App() {
                 <Route path="/audioplayer" element={<MusicPlayer />}></Route>
                 <Route path="/calender" element={<CalenderApp />}></Route>
                 <Route path="/imageslider" element={<ImageSliderComp />}></Route>
+                <Route path="/git" element={<GitHubUsers />}></Route>
                 <Route path="/*" element={<MainPhotoPage />}></Route>
               </Routes>
             </div>
