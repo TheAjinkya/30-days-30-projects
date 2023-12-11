@@ -28,6 +28,7 @@ function GitHubUsers() {
   return (
     <div>
       <div>
+        {console.log("COmponent Rendered")}
         {isFetching ? <>Loading...</> :
           <>{users && users.slice(0, 5).map(user => {
             return (<div class="flex items-start gap-2.5">
