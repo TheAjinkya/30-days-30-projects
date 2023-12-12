@@ -31,6 +31,7 @@ import CalenderApp from "./components/CalenderApp/CalenderApp";
 import ImageSliderComp from "./components/ImageSlider/ImageSliderComp";
 import ReduxCart from "./components/ReduxCart/ReduxCart";
 import GitHubUsers from "./components/GithubProfiles/GitHubUsers";
+import QuizApp from "./components/QuizApp/QuizApp";
 
 
 const LazyProducts = React.lazy(() => import("./components/Products"));
@@ -68,6 +69,7 @@ function App() {
                   <Route path="redux-counter" element={<ReduxBasicCounter />}></Route>
                 </Route>
                 <Route path="/unsplash" element={<MainPhotoPage />}></Route>
+                <Route path="/quiz" element={<QuizApp />}></Route>
                 <Route path="/audioplayer" element={<MusicPlayer />}></Route>
                 <Route path="/calender" element={<CalenderApp />}></Route>
                 <Route path="/imageslider" element={<ImageSliderComp />}></Route>

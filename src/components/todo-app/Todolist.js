@@ -34,7 +34,7 @@ function Todolist() {
             <hr />
             <div className='flex justify-center'>
                 <ul>
-                    {todolist.map(element => <div className='flex justify-between'><div className='bg-yellow-500 text-white border border-solid p-2 m-2'>{element}</div>
+                    {todolist.map(element => <div className='flex justify-between'><div className='p-2 m-2'>{element}</div>
                         <button onClick={() => deleteTask(element)} className='bg-red-600 p-2 m-2 text-white'>Delete</button></div>)}
                 </ul>
             </div>
