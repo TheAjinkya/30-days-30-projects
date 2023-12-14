@@ -1,37 +1,21 @@
-import React, { useCallback, useState } from 'react'
+import React, { createContext, useCallback, useState } from 'react'
+import Menu from './components/Menu';
+import QuizCard from './components/QuizCard';
+import FinishCard from './components/FinishCard';
 let globalCount = 0;
+
+export const MainContext = createContext();
 
 function QuizApp() {
 
-
-  const [todos, setTodos] = useState([]);
-  const [task, setTask] = useState("");
-
-  const submitTask = useCallback(() => {
-    setTodos(prevData => [...prevData, { id: globalCount++, name: task }])
-    console.log("New Task ", task)
-  }, [task])
-
-  const deleteTask = useCallback((id) => {
-    console.log("deletetask, todos", id, todos);
-    setTodos(todos.filter(elm => elm.id !== id))
-  }, [todos])
-
-
-  return (
-    <div>
-      <input type='text' onChange={(e) => { setTask(e.target.value) }} />
-      <button onClick={() => { submitTask() }} className='bg-blue-700 text-white m-2 p-2'>Add Task</button>
-      <hr />
-
-      {todos.map(elm => {
-        return (<ul>
-          <li>{elm.id} {elm.name} <button onClick={() => { deleteTask(elm.id) }}>Delete</button> </li>
-        </ul>
-        )
-      })}
-
-    </div>
+  const [currentState, setCurrentState] = useState("menu");
+  return (<div>
+    <MainContext.Provider value={{ currentState, setCurrentState }}>
+      {currentState === "menu" && <Menu />}
+      {currentState === "quiz" && <QuizCard/>}
+      {currentState === "finish" && <FinishCard/>}
+    </MainContext.Provider>
+  </div>
   )
 }
 

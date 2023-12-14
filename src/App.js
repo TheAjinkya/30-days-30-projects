@@ -74,6 +74,7 @@ function App() {
                 <Route path="/calender" element={<CalenderApp />}></Route>
                 <Route path="/imageslider" element={<ImageSliderComp />}></Route>
                 <Route path="/git" element={<GitHubUsers />}></Route>
+                <Route path="/quizapp" element={<QuizApp />}></Route>
                 <Route path="/*" element={<MainPhotoPage />}></Route>
               </Routes>
             </div>
