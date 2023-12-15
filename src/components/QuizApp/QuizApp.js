@@ -9,8 +9,10 @@ export const MainContext = createContext();
 function QuizApp() {
 
   const [currentState, setCurrentState] = useState("menu");
+  const [userName, setUsername]  = useState("");
+  const [score, setScore]  = useState(0);
   return (<div>
-    <MainContext.Provider value={{ currentState, setCurrentState }}>
+    <MainContext.Provider value={{ currentState, setCurrentState, userName, setUsername, score, setScore }}>
       {currentState === "menu" && <Menu />}
       {currentState === "quiz" && <QuizCard/>}
       {currentState === "finish" && <FinishCard/>}

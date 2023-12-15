@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { MainContext } from '../QuizApp';
+import ConfettiExplosion from 'react-confetti-explosion';
+
 
 const quizData = [{
     'question': 'What is the capital of England',
@@ -19,12 +21,13 @@ const quizData = [{
 ]
 
 function QuizCard() {
-    const { currentState, setCurrentState } = useContext(MainContext);
+    const [isExploding, setIsExploding] = useState(false);
+    const { currentState, setCurrentState, userName, setUserName, setScore } = useContext(MainContext);
     const [questioNum, setQuestioNum] = useState(0);
-    const options = quizData[questioNum].options
+    const question = quizData[questioNum]
 
     const nextQuestion = () => {
-        const totalNum = quizData.length-1;
+        const totalNum = quizData.length - 1;
         setQuestioNum(prevValue => {
             if (prevValue < totalNum) {
                 return prevValue + 1
@@ -33,16 +36,27 @@ function QuizCard() {
                 return 0
             }
         })
+        setIsExploding(false)
+    }
+
+    const selectedAnswer = (param) => {
+        if (param == question.answer) {
+            setIsExploding(true)
+            setScore(prev => prev + 1)
+        }
     }
 
     return (
         <div>
+
             <div className="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"> {quizData[questioNum].question} </h5>
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Welcome {userName}!</h5>
+                <div className="bg-green-600 m-4 p-4 text-2xl font-bold tracking-tight text-white dark:text-white"> {quizData[questioNum].question} </div>
                 <br />
-                {options && options.map(elm => {
+                <>{isExploding && <ConfettiExplosion style={{ left: "50%" }} width={1000} duration={5000} />}</>
+                {question && question.options.map((elm, index) => {
                     return (<>
-                        <button className='bg-blue-700 hover:bg-blue-200 hover:text-black  text-white p-2 m-2 w-24'>{elm}</button> <br />
+                        <button onClick={() => { selectedAnswer(index + 1) }} className='bg-blue-700 hover:bg-blue-200 hover:text-black  text-white p-2 m-2 w-24'>{elm}</button> <br />
                     </>)
                 })}
             </div>
