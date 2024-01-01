@@ -32,6 +32,9 @@ import ImageSliderComp from "./components/ImageSlider/ImageSliderComp";
 import ReduxCart from "./components/ReduxCart/ReduxCart";
 import GitHubUsers from "./components/GithubProfiles/GitHubUsers";
 import QuizApp from "./components/QuizApp/QuizApp";
+import News from "./components/SpaceNews/News";
+import MainContextCounter from "./components/ContextCounter/MainCounter"
+import { CountProvider } from "./components/ContextCounter/CountContext"
 
 
 const LazyProducts = React.lazy(() => import("./components/Products"));
@@ -40,46 +43,50 @@ function App() {
   return (
     <div className="App">
       <AuthProvider>
-        <Provider store={store}>
-          <div className="flex flex-row">
-            <div className="flex-auto w-6">
-              <Navbar />
+        <CountProvider>
+          <Provider store={store}>
+            <div className="flex flex-row">
+              <div className="flex-auto w-6">
+                <Navbar />
+              </div>
+              <div className="flex-auto w-2/4">
+                <Routes>
+                  <Route path="/about" element={<About />}></Route>
+                  <Route path="/contact" element={<Contact />}></Route>
+                  <Route path="/home" element={<Home />}></Route>
+                  <Route path="/order-placed" element={<OrderConfirmed />}></Route>
+                  <Route path="products" element={<React.Suspense fallback="Loading..."><RequireAuth><LazyProducts /></RequireAuth></React.Suspense>}>
+                    <Route index element={<Featured />}></Route>
+                    <Route path="featured" element={<Featured />}></Route>
+                    <Route path="new" element={<NewProducts />}></Route>
+                  </Route>
+                  <Route path="users" element={<User />}>
+                    <Route path="users/:id" element={<UserDetails />}></Route>
+                    <Route path="users/admin" element={<Admin />}></Route>
+                  </Route>
+                  <Route path="profile" element={<RequireAuth><Profile /></RequireAuth>}></Route>
+                  <Route path="/login" element={<Login />}></Route>
+                  <Route path="/logout" element={<Logout />}></Route>
+                  <Route path="/reduxcart" element={<ReduxCart />}></Route>
+                  <Route path="/todoapp" element={<Todolist />}></Route>
+                  <Route path="counter" element={<MainCounter />}>
+                    <Route path="redux-counter" element={<ReduxBasicCounter />}></Route>
+                  </Route>
+                  <Route path="/unsplash" element={<MainPhotoPage />}></Route>
+                  <Route path="/quiz" element={<QuizApp />}></Route>
+                  <Route path="/audioplayer" element={<MusicPlayer />}></Route>
+                  <Route path="/calender" element={<CalenderApp />}></Route>
+                  <Route path="/imageslider" element={<ImageSliderComp />}></Route>
+                  <Route path="/git" element={<GitHubUsers />}></Route>
+                  <Route path="/quizapp" element={<QuizApp />}></Route>
+                  <Route path="/news" element={<News />}></Route>
+                  <Route path="/context" element={<MainContextCounter />}></Route>
+                  <Route path="/*" element={<MainPhotoPage />}></Route>
+                </Routes>
+              </div>
             </div>
-            <div className="flex-auto w-2/4">
-              <Routes>
-                <Route path="/about" element={<About />}></Route>
-                <Route path="/contact" element={<Contact />}></Route>
-                <Route path="/home" element={<Home />}></Route>
-                <Route path="/order-placed" element={<OrderConfirmed />}></Route>
-                <Route path="products" element={<React.Suspense fallback="Loading..."><RequireAuth><LazyProducts /></RequireAuth></React.Suspense>}>
-                  <Route index element={<Featured />}></Route>
-                  <Route path="featured" element={<Featured />}></Route>
-                  <Route path="new" element={<NewProducts />}></Route>
-                </Route>
-                <Route path="users" element={<User />}>
-                  <Route path="users/:id" element={<UserDetails />}></Route>
-                  <Route path="users/admin" element={<Admin />}></Route>
-                </Route>
-                <Route path="profile" element={<RequireAuth><Profile /></RequireAuth>}></Route>
-                <Route path="/login" element={<Login />}></Route>
-                <Route path="/logout" element={<Logout />}></Route>
-              <Route path="/reduxcart" element={<ReduxCart />}></Route>
-                <Route path="/todoapp" element={<Todolist />}></Route>
-                <Route path="counter" element={<MainCounter />}>
-                  <Route path="redux-counter" element={<ReduxBasicCounter />}></Route>
-                </Route>
-                <Route path="/unsplash" element={<MainPhotoPage />}></Route>
-                <Route path="/quiz" element={<QuizApp />}></Route>
-                <Route path="/audioplayer" element={<MusicPlayer />}></Route>
-                <Route path="/calender" element={<CalenderApp />}></Route>
-                <Route path="/imageslider" element={<ImageSliderComp />}></Route>
-                <Route path="/git" element={<GitHubUsers />}></Route>
-                <Route path="/quizapp" element={<QuizApp />}></Route>
-                <Route path="/*" element={<MainPhotoPage />}></Route>
-              </Routes>
-            </div>
-          </div>
-        </Provider>
+          </Provider>
+        </CountProvider>
       </AuthProvider>
     </div>
   );

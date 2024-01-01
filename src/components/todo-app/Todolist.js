@@ -5,6 +5,7 @@ function Todolist() {
     const initialList = []
     const [todolist, setTodolist] = useState(initialList)
     const [task, setTask] = useState()
+    const [completed, setCompleted] = useState("")
 
     const addTask = useCallback(() => {
         if (task !== "") {
@@ -17,9 +18,12 @@ function Todolist() {
             const modTodoList = todolist.filter(elm => elm !== param)
             setTodolist(modTodoList)
         },
-        [todolist]
-    )
+        [todolist])
 
+    const completedTask = (param) => {
+        console.log(param)
+        setCompleted(param)
+    }
 
     return (<>
         <div className='m-2'>
@@ -34,7 +38,8 @@ function Todolist() {
             <hr />
             <div className='flex justify-center'>
                 <ul>
-                    {todolist.map(element => <div className='flex justify-between'><div className='p-2 m-2'>{element}</div>
+                    {todolist.map(element => <div className='flex justify-between'>
+                        <div className='p-2 m-2' onClick={() => completedTask(element)}>{element}</div>
                         <button onClick={() => deleteTask(element)} className='bg-red-600 p-2 m-2 text-white'>Delete</button></div>)}
                 </ul>
             </div>
